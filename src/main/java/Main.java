@@ -26,10 +26,21 @@ public class Main {
         sortedPersonsByUsername.forEach(System.out::println);
     }
 
+    public static void sortedPersonsByAgeAndLastName(){
+        assert persons != null;
+        List<Person> sortedPersons = persons.stream()
+                .sorted(Comparator.comparing(Person::getAge)
+                        .thenComparing(Person::getLastName))
+                .toList();
+        System.out.println("Persons sorted by age and last name:");
+        sortedPersons.forEach(System.out::println);
+    }
+
 
     public static void main(String[] args) {
         personsOver50();
         sortedPersonsByUsername();
+        sortedPersonsByAgeAndLastName();
 
     }
 }
