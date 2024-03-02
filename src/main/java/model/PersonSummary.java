@@ -15,10 +15,9 @@ import java.util.Date;
 
 public class PersonSummary {
 
-     Integer id;
-     String firstName;
-     String lastName;
-     Integer age;
-     Date birthDate;
-
+    Integer id;
+    String firstName;
+    String lastName;
+    Integer age;
+    Date birthDate;
 }
