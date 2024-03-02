@@ -3,6 +3,7 @@ import model.Person;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -46,6 +47,34 @@ public class Main {
         ipv4Addresses.forEach(System.out::println);
     }
 
+    public static void five(){
+        assert persons != null;
+        List<Person> sortedByLastName = persons.stream()
+                .sorted(Comparator.comparing(Person::getLastName))
+                .toList();
+
+        List<Person> filteredByAgeAndGender = sortedByLastName.stream()
+                .filter(person -> person.getAge() > 40 && person.getGender().equals("Female"))
+                .toList();
+
+        List<Person> removedStartingWithA = filteredByAgeAndGender.stream()
+                .dropWhile(person -> person.getFirstName().startsWith("A"))
+                .toList();
+
+        List<Person> afterDropping = removedStartingWithA.stream()
+                .skip(5)
+                .toList();
+
+        Map<String, Person> resultMap = afterDropping.stream()
+                .collect(Collectors.toMap(
+                        person -> person.getFirstName() + " " + person.getLastName(),
+                        person -> person
+                ));
+
+        System.out.println("Result:");
+        resultMap.forEach((key, value) -> System.out.println(key + ": " + value));
+    }
+
 
 
     public static void main(String[] args) {
@@ -53,5 +82,6 @@ public class Main {
         sortedPersonsByUsername();
         sortedPersonsByAgeAndLastName();
         ipv4Addresses();
+        five();
     }
 }
