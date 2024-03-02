@@ -9,15 +9,15 @@ public class Main {
     static final List<Person> persons = MockData.getPeople();
 
 
-    public static void personsOver50(){
+    public static void personsOver50() {
         //List<Person> personsOver50 = persons.stream().filter(person -> person.getAge() > 50).collect(Collectors.toList());
-       assert persons != null;
-       List<Person> personsOver50 = persons.stream().filter(person -> person.getAge() > 50).toList();
-      System.out.println("Persons over 50 years old:");
-       personsOver50.forEach(System.out::println);
+        assert persons != null;
+        List<Person> personsOver50 = persons.stream().filter(person -> person.getAge() > 50).toList();
+        System.out.println("Persons over 50 years old:");
+        personsOver50.forEach(System.out::println);
     }
 
-    public static void sortedPersonsByUsername(){
+    public static void sortedPersonsByUsername() {
         assert persons != null;
         List<Person> sortedPersonsByUsername = persons.stream()
                 .sorted(Comparator.comparing(Person::getUsername))
@@ -26,7 +26,7 @@ public class Main {
         sortedPersonsByUsername.forEach(System.out::println);
     }
 
-    public static void sortedPersonsByAgeAndLastName(){
+    public static void sortedPersonsByAgeAndLastName() {
         assert persons != null;
         List<Person> sortedPersons = persons.stream()
                 .sorted(Comparator.comparing(Person::getAge)
@@ -36,7 +36,7 @@ public class Main {
         sortedPersons.forEach(System.out::println);
     }
 
-    public static void ipv4Addresses(){
+    public static void ipv4Addresses() {
         assert persons != null;
         Set<String> ipv4Addresses = persons.stream()
                 .map(Person::getIpv4)
@@ -45,7 +45,7 @@ public class Main {
         ipv4Addresses.forEach(System.out::println);
     }
 
-    public static void five(){
+    public static void five() {
         assert persons != null;
         List<Person> sortedByLastName = persons.stream()
                 .sorted(Comparator.comparing(Person::getLastName))
@@ -74,17 +74,13 @@ public class Main {
     }
 
 
-    public static void six(){
-
+    public static void six() {
+      
     }
 
 
-
-
-
-
     public static void main(String[] args) {
-       // personsOver50();
+        // personsOver50();
         //sortedPersonsByUsername();
         //sortedPersonsByAgeAndLastName();
         //ipv4Addresses();
