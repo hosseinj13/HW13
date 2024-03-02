@@ -1,10 +1,8 @@
 import mockdata.MockData;
 import model.Person;
+import model.PersonSummary;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -76,12 +74,21 @@ public class Main {
     }
 
 
+    public static void six(){
+
+    }
+
+
+
+
+
 
     public static void main(String[] args) {
-        personsOver50();
-        sortedPersonsByUsername();
-        sortedPersonsByAgeAndLastName();
-        ipv4Addresses();
-        five();
+       // personsOver50();
+        //sortedPersonsByUsername();
+        //sortedPersonsByAgeAndLastName();
+        //ipv4Addresses();
+        //five();
+        six();
     }
 }
