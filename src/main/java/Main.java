@@ -3,6 +3,7 @@ import model.Person;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -36,11 +37,21 @@ public class Main {
         sortedPersons.forEach(System.out::println);
     }
 
+    public static void ipv4Addresses(){
+        assert persons != null;
+        Set<String> ipv4Addresses = persons.stream()
+                .map(Person::getIpv4)
+                .collect(Collectors.toSet());
+        System.out.println("IPv4 addresses:");
+        ipv4Addresses.forEach(System.out::println);
+    }
+
+
 
     public static void main(String[] args) {
         personsOver50();
         sortedPersonsByUsername();
         sortedPersonsByAgeAndLastName();
-
+        ipv4Addresses();
     }
 }
