@@ -2,20 +2,21 @@
 import mockdata.MockData;
 import model.Person;
 import model.PersonSummary;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
-    static final List<Person> persons = MockData.getPeople();
+    static List<Person> persons = MockData.getPeople();
 
 
     public static void personsOver50() {
         //List<Person> personsOver50 = persons.stream().filter(person -> person.getAge() > 50).collect(Collectors.toList());
         assert persons != null;
         List<Person> personsOver50 = persons.stream().filter(person -> person.getAge() > 50).toList();
-        System.out.println("Persons over 50 years old:");
+        System.out.println("Persons over 50 years old: ");
         personsOver50.forEach(System.out::println);
     }
 
@@ -48,11 +49,21 @@ public class Main {
     }
 
 
-    public static Map<String, Person> processPeople() {
+    public static void processPeople() {
         assert persons != null;
-        return persons.stream()
+        List<Person> sortedByLastName = persons.stream()
                 .sorted(Comparator.comparing(Person::getLastName))
-                .filter(person -> !person.getGender().equalsIgnoreCase("Female")  ||  person.getAge() <= 40)
+                .toList();
+
+        List<Person> filteredByAgeAndGender = sortedByLastName.stream()
+                .filter(person -> person.getAge() > 40 && person.getGender().equals("Female"))
+                .toList();
+
+        List<Person> removedStartingWithA = filteredByAgeAndGender.stream()
+                .dropWhile(person -> person.getFirstName().startsWith("A"))
+                .toList();
+
+        Map<String, Person> resultMap = removedStartingWithA.stream()
                 .collect(Collectors.toMap(
                         person -> person.getFirstName() + " " + person.getLastName(),
                         person -> person,
@@ -61,8 +72,10 @@ public class Main {
                 .skip(5)
                 .limit(100)
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
-    }
 
+        System.out.println("Result:");
+        resultMap.forEach((key, value) -> System.out.println(key + ": " + value));
+    }
 
     public static void six() {
         // Convert Person objects to PersonSummary objects
@@ -110,7 +123,7 @@ public class Main {
         //sortedPersonsByUsername();
         //sortedPersonsByAgeAndLastName();
         //ipv4Addresses();
-        System.out.println(processPeople());
+        processPeople();
         //six();
     }
 }
